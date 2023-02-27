@@ -162,6 +162,7 @@ custom:
   autoswagger:
     title: "string"
     apiType: "http"
+    basePath: "/dev"
     generateSwaggerOnDeploy: true
     typefiles: ["./src/types/api-types.d.ts"]
     swaggerFiles: []

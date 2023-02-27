@@ -47,6 +47,7 @@ export class UsersService {
    * @param values - values passed for query
    */
   protected async findOneUser(condition: string, values: Array<string>): Promise<any> {
+
     const conn = await this.userDBConn.getConnection()
     const [rows, fields] = await conn.execute(
       `SELECT * FROM users  ${condition} `,
@@ -111,7 +112,7 @@ export class UsersService {
     const authHeader = event.headers['Authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     return new Promise(resolve => {
-      const user: any = jwt.verify(token, process.env.TOKEN_SECRET as string || "0f1b84c98a20d6b0339f535c606e2f26e402aa8da98a20d6b")
+      const user: any = jwt.verify(token, process.env.TOKEN_SECRET as string)
       resolve(user.userid)
     })
   }
@@ -119,7 +120,7 @@ export class UsersService {
 
   protected async authenticateToken(token) {
     return new Promise(resolve => {
-      const user = jwt.verify(token, process.env.TOKEN_SECRET as string || "0f1b84c98a20d6b0339f535c606e2f26e402aa8da98a20d6b")
+      const user = jwt.verify(token, process.env.TOKEN_SECRET as string)
       if (!user) resolve(false)
       resolve(user)
     })

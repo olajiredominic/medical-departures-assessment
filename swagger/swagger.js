@@ -558,6 +558,7 @@
     }
   },
   "securityDefinitions": {},
+  "basePath": "/dev",
   "schemes": [
     "http",
     "https"
