@@ -24,14 +24,26 @@
           {
             "in": "header",
             "name": "authorization",
-            "required": "true,",
+            "required": true,
             "type": "string",
             "description": "Bearer ....."
           }
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserProfileResponseDTO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -63,7 +75,19 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication data",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -95,7 +119,19 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LoginResponseDTO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication data",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -127,7 +163,19 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication data",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -159,7 +207,19 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication data",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -191,14 +251,26 @@
           {
             "in": "header",
             "name": "authorization",
-            "required": "true,",
+            "required": true,
             "type": "string",
             "description": "Bearer ....."
           }
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -230,14 +302,26 @@
           {
             "in": "header",
             "name": "authorization",
-            "required": "true,",
+            "required": true,
             "type": "string",
             "description": "Bearer ....."
           }
         ],
         "responses": {
           "200": {
-            "description": "200 response"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "400": {
+            "description": "Invalid authentication",
+            "schema": {
+              "$ref": "#/definitions/GenericResponseVO"
+            }
+          },
+          "502": {
+            "description": "server error"
           }
         }
       }
@@ -321,6 +405,58 @@
       "title": "LoginUserDTO",
       "type": "object"
     },
+    "GenericResponseVO": {
+      "properties": {
+        "statusCode": {
+          "title": "GenericResponseVO.statusCode",
+          "type": "number"
+        },
+        "body": {
+          "title": "GenericResponseVO.body",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statusCode",
+        "body"
+      ],
+      "additionalProperties": false,
+      "title": "GenericResponseVO",
+      "type": "object"
+    },
+    "LoginResponseDTO": {
+      "properties": {
+        "code": {
+          "title": "LoginResponseDTO.code",
+          "type": "number"
+        },
+        "message": {
+          "title": "LoginResponseDTO.message",
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "token": {
+              "title": "LoginResponseDTO.data.token",
+              "type": "string"
+            }
+          },
+          "required": [
+            "token"
+          ],
+          "additionalProperties": false,
+          "title": "LoginResponseDTO.data",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "additionalProperties": false,
+      "title": "LoginResponseDTO",
+      "type": "object"
+    },
     "ResetPasswordDTO": {
       "properties": {
         "loginId": {
@@ -372,6 +508,52 @@
       },
       "additionalProperties": false,
       "title": "ChangeUserPasswordDTO",
+      "type": "object"
+    },
+    "UserProfileResponseDTO": {
+      "properties": {
+        "code": {
+          "title": "UserProfileResponseDTO.code",
+          "type": "number"
+        },
+        "message": {
+          "title": "UserProfileResponseDTO.message",
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "firstname": {
+              "title": "UserProfileResponseDTO.data.firstname",
+              "type": "string"
+            },
+            "lastname": {
+              "title": "UserProfileResponseDTO.data.lastname",
+              "type": "string"
+            },
+            "email": {
+              "title": "UserProfileResponseDTO.data.email",
+              "type": "string"
+            },
+            "telephone": {
+              "title": "UserProfileResponseDTO.data.telephone",
+              "type": "string"
+            }
+          },
+          "required": [
+            "firstname",
+            "lastname"
+          ],
+          "additionalProperties": false,
+          "title": "UserProfileResponseDTO.data",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "additionalProperties": false,
+      "title": "UserProfileResponseDTO",
       "type": "object"
     }
   },

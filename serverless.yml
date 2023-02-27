@@ -35,9 +35,17 @@ functions:
           swaggerTags: ["User"]
           headerParameters:
             authorization:
-              required: true,
+              required: true
               type: "string"
               description: "Bearer ....."
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "UserProfileResponseDTO"
+            400:
+              description: "Invalid authentication"
+              bodyType: "GenericResponseVO"
+            502: "server error"
 
   register:
     handler: app/handler.register
@@ -47,6 +55,14 @@ functions:
           method: POST
           swaggerTags: ["User"]
           bodyType: "RegisterUserDTO"
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "GenericResponseVO"
+            400:
+              description: "Invalid authentication data"
+              bodyType: "GenericResponseVO"
+            502: "server error"
 
   login:
     handler: app/handler.login
@@ -56,6 +72,14 @@ functions:
           method: POST
           swaggerTags: ["Auth"]
           bodyType: "LoginUserDTO"
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "LoginResponseDTO"
+            400:
+              description: "Invalid authentication data"
+              bodyType: "GenericResponseVO"
+            502: "server error"
   forgotpassword:
     handler: app/handler.forgotpassword
     events:
@@ -64,6 +88,14 @@ functions:
           method: POST
           swaggerTags: ["Auth"]
           bodyType: "ForgotPasswordDTO"
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "GenericResponseVO"
+            400:
+              description: "Invalid authentication data"
+              bodyType: "GenericResponseVO"
+            502: "server error"
   resetpassword:
     handler: app/handler.resetpassword
     events:
@@ -72,6 +104,14 @@ functions:
           method: POST
           swaggerTags: ["Auth"]
           bodyType: "ResetPasswordDTO"
+          responseData:
+            200:
+              description: "success"
+              bodyType: "GenericResponseVO"
+            400:
+              description: "Invalid authentication data"
+              bodyType: "GenericResponseVO"
+            502: "server error"
   changepassword:
     handler: app/handler.changepassword
     events:
@@ -82,9 +122,17 @@ functions:
           bodyType: "ChangeUserPasswordDTO"
           headerParameters:
             authorization:
-              required: true,
+              required: true
               type: "string"
               description: "Bearer ....."
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "GenericResponseVO"
+            400:
+              description: "Invalid authentication"
+              bodyType: "GenericResponseVO"
+            502: "server error"
           authorizer:
             name: Auth
   updateprofile:
@@ -97,9 +145,17 @@ functions:
           bodyType: "UpdateUserDTO"
           headerParameters:
             authorization:
-              required: true,
+              required: true
               type: "string"
               description: "Bearer ....."
+          responseData:
+            200:
+              description: "Success"
+              bodyType: "GenericResponseVO"
+            400:
+              description: "Invalid authentication"
+              bodyType: "GenericResponseVO"
+            502: "server error"
           authorizer:
             name: Auth
 custom:

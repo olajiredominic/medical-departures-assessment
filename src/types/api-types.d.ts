@@ -18,6 +18,19 @@ export interface LoginUserDTO {
   password: string;
 }
 
+export interface GenericResponseVO {
+  statusCode: number;
+  body: string;
+}
+export interface LoginResponseDTO {
+  code: number;
+  message: string;
+  data?: {
+    token: string;
+  }
+}
+
+
 export interface ResetPasswordDTO {
   loginId: string;
   token: string;
@@ -32,4 +45,16 @@ export interface ForgotPasswordDTO {
 export interface ChangeUserPasswordDTO {
   oldPassword?: string;
   newPassword?: string;
+}
+
+export interface UserProfileResponseDTO {
+  code: number;
+  message: string;
+  data?: {
+    firstname: string;
+    lastname: string;
+    email?: string;
+    telephone?: string;
+  }
+
 }
