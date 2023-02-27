@@ -2,15 +2,18 @@
             module.exports = {
   "swagger": "2.0",
   "info": {
-    "title": "test",
+    "title": "string",
     "version": "1"
   },
   "paths": {
-    "/user/register": {
-      "post": {
-        "summary": "register",
+    "/user": {
+      "get": {
+        "summary": "get",
         "description": "",
-        "operationId": "register.post.user/register",
+        "tags": [
+          "User"
+        ],
+        "operationId": "get.get.user",
         "consumes": [
           "application/json"
         ],
@@ -25,18 +28,31 @@
         }
       }
     },
-    "/user/register2": {
-      "get": {
-        "summary": "register2",
+    "/user/register": {
+      "post": {
+        "summary": "register",
         "description": "",
-        "operationId": "register2.get.user/register2",
+        "tags": [
+          "User"
+        ],
+        "operationId": "register.post.user/register",
         "consumes": [
           "application/json"
         ],
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterUserDTO"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 response"
@@ -48,6 +64,9 @@
       "post": {
         "summary": "login",
         "description": "",
+        "tags": [
+          "Auth"
+        ],
         "operationId": "login.post.auth/login",
         "consumes": [
           "application/json"
@@ -55,7 +74,145 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "summary": "forgotpassword",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "forgotpassword.post.auth/forgot-password",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ForgotPasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "summary": "resetpassword",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "resetpassword.post.auth/reset-password",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
+    "/auth/change-password": {
+      "post": {
+        "summary": "changepassword",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "changepassword.post.auth/change-password",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangeUserPasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    },
+    "/user/update-profile": {
+      "patch": {
+        "summary": "updateprofile",
+        "description": "",
+        "tags": [
+          "User"
+        ],
+        "operationId": "updateprofile.patch.user/update-profile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserDTO"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 response"
@@ -64,6 +221,141 @@
       }
     }
   },
-  "definitions": {},
-  "securityDefinitions": {}
+  "definitions": {
+    "RegisterUserDTO": {
+      "properties": {
+        "firstname": {
+          "title": "RegisterUserDTO.firstname",
+          "type": "string"
+        },
+        "lastname": {
+          "title": "RegisterUserDTO.lastname",
+          "type": "string"
+        },
+        "email": {
+          "title": "RegisterUserDTO.email",
+          "type": "string"
+        },
+        "telephone": {
+          "title": "RegisterUserDTO.telephone",
+          "type": "string"
+        },
+        "password": {
+          "title": "RegisterUserDTO.password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstname",
+        "lastname"
+      ],
+      "additionalProperties": false,
+      "title": "RegisterUserDTO",
+      "type": "object"
+    },
+    "UpdateUserDTO": {
+      "properties": {
+        "firstname": {
+          "title": "UpdateUserDTO.firstname",
+          "type": "string"
+        },
+        "lastname": {
+          "title": "UpdateUserDTO.lastname",
+          "type": "string"
+        },
+        "email": {
+          "title": "UpdateUserDTO.email",
+          "type": "string"
+        },
+        "telephone": {
+          "title": "UpdateUserDTO.telephone",
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstname",
+        "lastname"
+      ],
+      "additionalProperties": false,
+      "title": "UpdateUserDTO",
+      "type": "object"
+    },
+    "LoginUserDTO": {
+      "properties": {
+        "loginId": {
+          "title": "LoginUserDTO.loginId",
+          "type": "string"
+        },
+        "password": {
+          "title": "LoginUserDTO.password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "loginId",
+        "password"
+      ],
+      "additionalProperties": false,
+      "title": "LoginUserDTO",
+      "type": "object"
+    },
+    "ResetPasswordDTO": {
+      "properties": {
+        "loginId": {
+          "title": "ResetPasswordDTO.loginId",
+          "type": "string"
+        },
+        "token": {
+          "title": "ResetPasswordDTO.token",
+          "type": "string"
+        },
+        "password": {
+          "title": "ResetPasswordDTO.password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "loginId",
+        "token",
+        "password"
+      ],
+      "additionalProperties": false,
+      "title": "ResetPasswordDTO",
+      "type": "object"
+    },
+    "ForgotPasswordDTO": {
+      "properties": {
+        "loginId": {
+          "title": "ForgotPasswordDTO.loginId",
+          "type": "string"
+        }
+      },
+      "required": [
+        "loginId"
+      ],
+      "additionalProperties": false,
+      "title": "ForgotPasswordDTO",
+      "type": "object"
+    },
+    "ChangeUserPasswordDTO": {
+      "properties": {
+        "oldPassword": {
+          "title": "ChangeUserPasswordDTO.oldPassword",
+          "type": "string"
+        },
+        "newPassword": {
+          "title": "ChangeUserPasswordDTO.newPassword",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "title": "ChangeUserPasswordDTO",
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {},
+  "schemes": [
+    "http",
+    "https"
+  ]
 };

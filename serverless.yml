@@ -5,6 +5,11 @@ provider:
   runtime: nodejs12.x
   environment:
     NODE_ENV: dev
+  httpApi:
+    authorizers:
+      Auth:
+        type: request
+        functionName: Auth
 
 plugins:
   - serverless-auto-swagger
@@ -27,36 +32,47 @@ functions:
       - http:
           path: user
           method: GET
+          swaggerTags: ["User"]
   register:
     handler: app/handler.register
     events:
       - http:
           path: user/register
           method: POST
+          swaggerTags: ["User"]
+          bodyType: "RegisterUserDTO"
   login:
     handler: app/handler.login
     events:
       - http:
           path: auth/login
           method: POST
+          swaggerTags: ["Auth"]
+          bodyType: "LoginUserDTO"
   forgotpassword:
     handler: app/handler.forgotpassword
     events:
       - http:
           path: auth/forgot-password
           method: POST
+          swaggerTags: ["Auth"]
+          bodyType: "ForgotPasswordDTO"
   resetpassword:
     handler: app/handler.resetpassword
     events:
       - http:
           path: auth/reset-password
           method: POST
+          swaggerTags: ["Auth"]
+          bodyType: "ResetPasswordDTO"
   changepassword:
     handler: app/handler.changepassword
     events:
       - http:
           path: auth/change-password
           method: POST
+          swaggerTags: ["Auth"]
+          bodyType: "ChangeUserPasswordDTO"
           authorizer:
             name: Auth
   updateprofile:
@@ -65,9 +81,16 @@ functions:
       - http:
           path: user/update-profile
           method: PATCH
+          swaggerTags: ["User"]
+          bodyType: "UpdateUserDTO"
           authorizer:
             name: Auth
 custom:
   autoswagger:
-    generateSwaggerOnDeploy?: true | false
-    typefiles?: ["./src/types/typefile1.d.ts"]
+    title: "string"
+    apiType: "http"
+    generateSwaggerOnDeploy: true
+    typefiles: ["./src/types/api-types.d.ts"]
+    swaggerFiles: []
+    swaggerPath: "swagger"
+    schemes: ["http", "https"]

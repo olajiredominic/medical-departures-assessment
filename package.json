@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "This is simple REST API example for AWS Lambda By Serverless framwork with TypeScript and MongoDB Atlas.",
+  "description": "This is simple REST API example for AWS Lambda By Serverless framwork with TypeScript and MySql.",
   "main": "index.js",
   "scripts": {
     "lint": "tslint -p tsconfig.json -c tslint.json",
@@ -20,7 +20,8 @@
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.10",
-    "mysql2": "^3.1.2"
+    "mysql2": "^3.1.2",
+    "serverless-openapi-documentation": "^0.4.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.51",
@@ -48,19 +49,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Q-Angelo/aws-node-typescript-rest-api.git"
+    "url": "git+https://github.com/olajiredominic/medical-departures-assessment.git"
   },
   "keywords": [
     "Nodejs",
     "TypeScript",
     "ServerLess",
-    "MongoDB Atlas",
+    "MySql",
     "AWS Lambda"
   ],
-  "author": "May",
+  "author": "Olajire Dominic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Q-Angelo/aws-node-typescript-rest-api/issues"
+    "url": "https://github.com/olajiredominic/medical-departures-assessment.git"
   },
   "homepage": "https://github.com/Q-Angelo/aws-node-typescript-rest-api#readme"
 }
