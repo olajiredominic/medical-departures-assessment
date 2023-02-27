@@ -7,7 +7,8 @@ provider:
     NODE_ENV: dev
 
 plugins:
-  - serverless-plugin-typescript 
+  - serverless-auto-swagger
+  - serverless-plugin-typescript
   - serverless-offline
 
 package:
@@ -18,34 +19,55 @@ package:
     - config/.env.dev
 
 functions:
-  create:
-    handler: app/handler.create
+  Auth:
+    handler: app/handler.authAuthorizer
+  get:
+    handler: app/handler.get
     events:
       - http:
-          path: books
-          method: post
-  update:
-    handler: app/handler.update
+          path: user
+          method: GET
+  register:
+    handler: app/handler.register
     events:
       - http:
-          path: books/{id}
-          method: put
-  find:
-    handler: app/handler.find
+          path: user/register
+          method: POST
+  login:
+    handler: app/handler.login
     events:
       - http:
-          path: books
-          method: get
-  findOne:
-    handler: app/handler.findOne
+          path: auth/login
+          method: POST
+  forgotpassword:
+    handler: app/handler.forgotpassword
     events:
       - http:
-          path: books/{id}
-          method: get
-
-  deleteOne:
-    handler: app/handler.deleteOne
+          path: auth/forgot-password
+          method: POST
+  resetpassword:
+    handler: app/handler.resetpassword
     events:
       - http:
-          path: books/{id}
-          method: delete
+          path: auth/reset-password
+          method: POST
+  changepassword:
+    handler: app/handler.changepassword
+    events:
+      - http:
+          path: auth/change-password
+          method: POST
+          authorizer:
+            name: Auth
+  updateprofile:
+    handler: app/handler.changepassword
+    events:
+      - http:
+          path: user/update-profile
+          method: PATCH
+          authorizer:
+            name: Auth
+custom:
+  autoswagger:
+    generateSwaggerOnDeploy?: true | false
+    typefiles?: ["./src/types/typefile1.d.ts"]
