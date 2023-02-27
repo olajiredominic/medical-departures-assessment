@@ -33,6 +33,12 @@ functions:
           path: user
           method: GET
           swaggerTags: ["User"]
+          headerParameters:
+            authorization:
+              required: true,
+              type: "string"
+              description: "Bearer ....."
+
   register:
     handler: app/handler.register
     events:
@@ -41,6 +47,7 @@ functions:
           method: POST
           swaggerTags: ["User"]
           bodyType: "RegisterUserDTO"
+
   login:
     handler: app/handler.login
     events:
@@ -73,6 +80,11 @@ functions:
           method: POST
           swaggerTags: ["Auth"]
           bodyType: "ChangeUserPasswordDTO"
+          headerParameters:
+            authorization:
+              required: true,
+              type: "string"
+              description: "Bearer ....."
           authorizer:
             name: Auth
   updateprofile:
@@ -83,6 +95,11 @@ functions:
           method: PATCH
           swaggerTags: ["User"]
           bodyType: "UpdateUserDTO"
+          headerParameters:
+            authorization:
+              required: true,
+              type: "string"
+              description: "Bearer ....."
           authorizer:
             name: Auth
 custom:

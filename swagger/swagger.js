@@ -20,7 +20,15 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": "true,",
+            "type": "string",
+            "description": "Bearer ....."
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 response"
@@ -179,6 +187,13 @@
             "schema": {
               "$ref": "#/definitions/ChangeUserPasswordDTO"
             }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": "true,",
+            "type": "string",
+            "description": "Bearer ....."
           }
         ],
         "responses": {
@@ -211,6 +226,13 @@
             "schema": {
               "$ref": "#/definitions/UpdateUserDTO"
             }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": "true,",
+            "type": "string",
+            "description": "Bearer ....."
           }
         ],
         "responses": {
